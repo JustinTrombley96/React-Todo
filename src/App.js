@@ -4,35 +4,42 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './App.css';
 import Todo from './components/TodoComponents/Todo.js';
-import TodoForm from './components/TodoComponents/TodoForm.js';
-import TodoList from './components/TodoComponents/TodoList.js';
+// import Todo from './components/TodoComponents/Todo.js';
+// import TodoForm from './components/TodoComponents/TodoForm.js';
+// import TodoList from './components/TodoComponents/TodoList.js';
 
 class App extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			task : 'asd',
-		};
-	}
-
-	handleInputChange = event => {
-		this.setState({ task: event.target.value });
+	state = {
+		todo : [
+			{
+				id        : 1,
+				title     : 'Take out the trash',
+				completed : false,
+			},
+			{
+				id        : 2,
+				title     : 'Movies with son',
+				completed : false,
+			},
+			{
+				id        : 3,
+				title     : 'Walk the dog',
+				completed : false,
+			},
+		],
 	};
-
 	render() {
+    console.log(this.state.todos)
 		return (
-			<div>
-				<h2>Todo List: MVP</h2>
+			<div className='App'>
 				<Todo />
-				<TodoList />
-				<TodoForm />
 			</div>
 		);
 	}
 }
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
-
 
 export default App;

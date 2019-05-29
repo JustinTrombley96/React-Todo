@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Todo = props => { return (
-	<div>
-		<input type='text' placeholder='...todo' onChange={this.handleInputChange} />
-		<button>Add Todo</button>
-		<button>Clear Completed</button>
-	</div>
-    );};
+class Todo extends React.Component {
+	render() {
+		return (
+			<div>
+				<h1>Todo</h1>
+			</div>
+		);
+	}
+}
 
 export default Todo;
