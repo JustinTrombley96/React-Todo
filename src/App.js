@@ -5,14 +5,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import Todo from './components/TodoComponents/Todo.js';
+import Todos from './components/TodoComponents/Todos.js';
+import Header from './components/layout/Header.js';
+import AddTodo from './components/TodoComponents/AddTodo.js';
+
 // import Todo from './components/TodoComponents/Todo.js';
 // import TodoForm from './components/TodoComponents/TodoForm.js';
 // import TodoList from './components/TodoComponents/TodoList.js';
 
 class App extends React.Component {
 	state = {
-		todo : [
+		todos : [
 			{
 				id        : 1,
 				title     : 'Take out the trash',
@@ -30,11 +33,32 @@ class App extends React.Component {
 			},
 		],
 	};
+	//Toggle Complete
+	markComplete = id => {
+		this.setState({
+			todo : this.state.todos.map(todo => {
+				if (todo.id === id) {
+					todo.completed = !todo.completed;
+				}
+				return todo;
+			}),
+		});
+	};
+
+	//Delete Todo
+	delTodo = id => {
+		this.setState({
+			todos : [ ...this.state.todos.filter(todo => todo.id !== id) ],
+		});
+	};
 	render() {
-    console.log(this.state.todos)
 		return (
 			<div className='App'>
-				<Todo />
+				<div className='container'>
+					<Header />
+					<AddTodo />
+					<Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+				</div>
 			</div>
 		);
 	}
